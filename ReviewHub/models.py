@@ -48,3 +48,4 @@ class Review(models.Model):
     ]
     rating = models.CharField(max_length=1, choices=STARS)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
