@@ -15,6 +15,7 @@ def validate_username(value):
 
 class Book(models.Model):
     title = models.CharField(max_length=200, blank=False)
+    about = models.TextField(max_length=500)
     author = models.CharField(max_length=70)
     pub_year = models.PositiveSmallIntegerField(blank=True, null=True)
     GENRE_LIST = [
