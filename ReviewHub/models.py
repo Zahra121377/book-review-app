@@ -1,4 +1,13 @@
+from django.core.exceptions import ValidationError
 from django.db import models
+
+
+def validate_username(value):
+    if len(value) < 3 or len(value) > 20:
+        raise ValidationError(
+            ("Username should be between 3 and 20 characters."),
+            code="invalid_username_length",
+        )
 
 
 class Book(models.Model):
@@ -23,8 +32,13 @@ class Book(models.Model):
         return self.title
 
 
+class User(models.Model):
+    username = models.CharField(max_length=20, validators=[validate_username])
+    email = models.EmailField()
+
+
 class Review(models.Model):
-    context = models.TextField(max_length = 1000)
+    context = models.TextField(max_length=1000)
     STARS = [
         ("1", "1"),
         ("2", "2"),
@@ -32,5 +46,5 @@ class Review(models.Model):
         ("4", "4"),
         ("5", "5"),
     ]
-    rating = models.CharField(max_length = 1, choices = STARS)
+    rating = models.CharField(max_length=1, choices=STARS)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
