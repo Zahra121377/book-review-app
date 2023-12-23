@@ -1,7 +1,9 @@
 # Create your views here.
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from ReviewHub.forms import ReviewForm
+from ReviewHub.models import Book
 
 # class ReviewCreateView(CreateView):
 #     model = Review
@@ -16,4 +18,10 @@ from ReviewHub.forms import ReviewForm
 def add_review_view(request):
     context = {}
     context["form"] = ReviewForm()
-    return render(request, "create_review.html", context)
+    return render(request, "ReviewHub/add_review.html", context)
+
+
+class BookListView(ListView):
+    model = Book
+    # template_name = "book_list.html"
+    context_object_name = "books"
