@@ -1,4 +1,3 @@
-from math import floor
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -31,15 +30,14 @@ class Book(models.Model):
         ("Humor", "Humor"),
     ]
     genre = models.CharField(max_length=25, choices=GENRE_LIST)
-
+    avg_rating = models.IntegerField(default = 0)
+    
     def __str__(self):
         return self.title
 
-    def average_rating(self):
-        return (
-            floor(self.review_set.aggregate(Avg("rating"))["rating__avg"]) or 0
-        )
-
+    def update_average_rating(self):
+        self.avg_rating = round(self.review_set.aggregate(Avg("rating"))["rating__avg"] or 0)
+        self.save()
 
 class User(models.Model):
     username = models.CharField(max_length=20, validators=[validate_username])
@@ -61,4 +59,4 @@ class Review(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.book.update_avg_rating()
+        self.book.update_average_rating()
