@@ -41,11 +41,6 @@ class Book(models.Model):
         self.save()
 
 
-class User(models.Model):
-    username = models.CharField(max_length=20, validators=[validate_username])
-    email = models.EmailField()
-
-
 class Review(models.Model):
     context = models.TextField(max_length=1000)
     STARS = [
@@ -56,8 +51,11 @@ class Review(models.Model):
         ("5", "5"),
     ]
     rating = models.CharField(max_length=1, choices=STARS)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    username = models.CharField(
+        max_length=20, validators=[validate_username], default="Anonymous"
+    )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
