@@ -15,7 +15,7 @@ def validate_username(value):
 
 class Book(models.Model):
     title = models.CharField(max_length=200, blank=False)
-    about = models.TextField(max_length=500)
+    about = models.TextField(max_length=500, default="Explain about book here")
     author = models.CharField(max_length=70)
     pub_year = models.PositiveSmallIntegerField(blank=True, null=True)
     GENRE_LIST = [
@@ -31,13 +31,12 @@ class Book(models.Model):
         ("Humor", "Humor"),
     ]
     genre = models.CharField(max_length=25, choices=GENRE_LIST)
-    avg_rating = models.IntegerField(max_length=1)
 
     def __str__(self):
         return self.title
 
     def average_rating(self):
-        self.avg_rating = (
+        return (
             floor(self.review_set.aggregate(Avg("rating"))["rating__avg"]) or 0
         )
 
