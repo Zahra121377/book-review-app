@@ -4,24 +4,30 @@
     Home - Book Reviews
 {% endblock title %}
 {% block content %}
+    <style>
+        body {
+            background-color: #FFE7D6;
+            color: #000000; /* Set text color for the entire page */
+        }
+
+        .hero {
+            background-color: #e2a173;
+        }
+
+        .cta {
+            background-color: #FFE7D6;
+        }
+    </style>
     <!-- Hero Section -->
     <!-- Hero Section with Header Image -->
-    <section class="hero bg-info text-white text-center py-5">
-        <img src="{% static 'images/header.jpg' %}"
-             class="img-fluid"
-             alt="Header Image">
+    <img src="{% static 'images/header.jpg' %}"
+         class="img-fluid"
+         alt="Header Image">
+    <section class="hero text-white text-center py-5">
         <div class="container">
             <h1 class="display-4">Explore and Share Your Favorite Books</h1>
             <p class="lead">Discover a world of literature and connect with fellow book enthusiasts.</p>
             <a href="{% url 'book_list' %}" class="btn btn-light btn-lg">Explore Books</a>
-        </div>
-    </section>
-    <!-- Call-to-Action -->
-    <section class="cta bg-light text-center py-5">
-        <div class="container">
-            <h2 class="display-4">Ready to Share Your Thoughts?</h2>
-            <p class="lead text-muted">Join our community and start reviewing books today.</p>
-            <a href="{% url 'add_review' %}" class="btn btn-info btn-lg">Add a Review</a>
         </div>
     </section>
 {% endblock content %}

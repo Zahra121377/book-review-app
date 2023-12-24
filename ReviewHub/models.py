@@ -1,14 +1,5 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Avg
-
-
-def validate_username(value):
-    if len(value) < 3 or len(value) > 20:
-        raise ValidationError(
-            ("Username should be between 3 and 20 characters."),
-            code="invalid_username_length",
-        )
 
 
 class Book(models.Model):
@@ -51,11 +42,8 @@ class Review(models.Model):
         ("5", "5"),
     ]
     rating = models.CharField(max_length=1, choices=STARS)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    username = models.CharField(
-        max_length=20, validators=[validate_username], default="Anonymous"
-    )
+    user = models.CharField(max_length=20, default="Anonymous")
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
