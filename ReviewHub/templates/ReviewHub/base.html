@@ -4,8 +4,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+              content="Discover and share your favorite books on the Book Review Website">
+        <meta name="keywords"
+              content="book reviews, literature, reading, community">
         <title>
-            {% block title %}Book Review Website{% endblock %}
+            {% block title %}
+                Book Review Website
+            {% endblock title %}
         </title>
         <!-- Bootstrap CSS link -->
         <link rel="stylesheet"
@@ -13,9 +19,9 @@
     </head>
     <body>
         <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">ReviewHub</a>
+                <a class="navbar-brand" href="{% url 'home' %}">ReviewHub</a>
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
@@ -28,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'book_list' %}">Books</a>
@@ -40,11 +46,12 @@
         </nav>
         <!-- Main Content -->
         <main class="container mt-4">
-            {% block content %}{% endblock %}
+            {% block content %}
+            {% endblock content %}
         </main>
         <!-- Footer -->
         <footer class="bg-light text-center p-3 mt-4">
-            <p>&copy; 2023 Book Review Website</p>
+            <p>© 2023 Book Review Website</p>
         </footer>
         <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap features) -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
