@@ -27,5 +27,4 @@ def add_review_view(request):
 
 class BookListView(ListView):
     model = Book
-    # template_name = "book_list.html"
     context_object_name = "books"

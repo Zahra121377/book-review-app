@@ -1,7 +1,28 @@
 {% extends "ReviewHub/base.html" %}
+{% load static %}
 {% block content %}
-    <h2>Book List</h2>
-    <ul>
-        {% for book in books %}<li>{{ book.title }} by {{ book.author }}</li>{% endfor %}
-    </ul>
+    <!-- All Books Section -->
+    <section class="all-books my-5">
+        <div class="container">
+            <h2 class="text-center mb-4">All Books</h2>
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <!-- Adjusted for responsiveness -->
+                        <div class="card border-0">
+                            <div class="position-relative">
+                                <img src="{% static 'images/book.jpg' %}"
+                                     class="card-img-top rounded"
+                                     alt="{{ book.title }}">
+                                <div class="overlay position-absolute bottom-0 start-50 translate-middle-x p-3 text-center">
+                                    <h5 class="card-title text-info">{{ book.title }}</h5>
+                                    <p class="card-text text-muted">by {{ book.author }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock content %}
