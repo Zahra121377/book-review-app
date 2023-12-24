@@ -15,6 +15,10 @@ from ReviewHub.models import Book
 #         return super().form_valid(form)
 
 
+def index(request):
+    return render(request, "ReviewHub/index.html")
+
+
 def add_review_view(request):
     context = {}
     context["form"] = ReviewForm()
