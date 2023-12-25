@@ -21,6 +21,7 @@ from ReviewHub.models import Book
 def index(request):
     return render(request, "ReviewHub/index.html")
 
+
 class CreateReviewView(FormView):
     template_name = "ReviewHub/add_review.html"
     form_class = ReviewForm
