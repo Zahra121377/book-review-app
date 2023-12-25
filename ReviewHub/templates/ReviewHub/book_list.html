@@ -27,7 +27,9 @@
                                  class="card-img-top rounded"
                                  alt="{{ book.title }}">
                             <div class="overlay position-absolute start-50 translate-middle-x p-3 text-center w-100">
-                                <h5 class="card-title text-info">{{ book.title }}</h5>
+                                <a href="{% url 'book_detail' pk=book.id %}">
+                                    <h5 class="card-title text-info">{{ book.title }}</h5>
+                                </a>
                                 <p class="card-text text-muted">Author: {{ book.author }}</p>
                                 <a href="{% url 'add_review' book_id=book.id %}" class="btn btn-primary">Add review</a>
                             </div>

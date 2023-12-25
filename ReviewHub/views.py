@@ -2,7 +2,7 @@
 
 
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 
 from ReviewHub.forms import ReviewForm
@@ -60,3 +60,9 @@ class CreateReviewView(FormView):
 class BookListView(ListView):
     model = Book
     context_object_name = "books"
+
+
+class BookDetailView(DetailView):
+    model = Book
+    # template_name = 'book_detail.html'
+    context_object_name = "book"
