@@ -1,6 +1,5 @@
 {% extends "ReviewHub/base.html" %}
 {% load static %}
-
 {% block content %}
     <div class="container">
         <h2>{{ book.title }}</h2>
@@ -9,13 +8,12 @@
         <p>Publication Year: {{ book.pub_year }}</p>
         <p>About: {{ book.about }}</p>
         <p>Average Rating: {{ book.avg_rating }}</p>
-
         <h3>Reviews</h3>
         {% if book.review_set.all %}
             <ul>
                 {% for review in book.review_set.all %}
                     <li>
-                        <strong>{{ review.user}}</strong> rated it {{ review.rating }} stars.
+                        <strong>{{ review.user }}</strong> rated it {{ review.rating }} stars.
                         <br>
                         {{ review.context }}
                     </li>
@@ -25,4 +23,4 @@
             <p>No reviews yet. Be the first to review!</p>
         {% endif %}
     </div>
-{% endblock %}
+{% endblock content %}
