@@ -6,18 +6,24 @@
     <h2>Add Review</h2>
     <div class="container i-am-centered">
         <div class="col-md-6 form-container">
-            <form method="post" action="{% url 'add_review' book_id=book.id %}">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="{{ form.context.id_for_label }}">Review</label>
-                    {{ form.context }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.rating.id_for_label }}">Rating</label>
-                    {{ form.rating }}
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div class="row justify-content-center">
+                <form method="post" action="{% url 'add_review' book_id=book.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.context.id_for_label }}">Review</label>
+                        {{ form.context }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.rating.id_for_label }}">Rating</label>
+                        {{ form.rating }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.user.id_for_label }}">Your Name</label>
+                            {{ form.user }}
+                        </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock content %}
