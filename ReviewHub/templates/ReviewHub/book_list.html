@@ -1,6 +1,31 @@
 {% extends "ReviewHub/base.html" %}
 {% load static %}
 {% block content %}
+    <form method="get" action="{% url 'book_list' %}">
+        <label for="genre">Filter by Genre:</label>
+        <select name="genre" id="genre">
+            <option value="">All Genres</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Novel">Novel</option>
+            <option value="Narrative">Narrative</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Sci-Fi">Science Fiction</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Thriller">Thriller</option>
+            <option value="History">History</option>
+            <option value="Memoir">Memoir</option>
+            <option value="Humor">Humor</option>
+            
+    
+
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <p>
+        Sort By:
+        <a href="?sort_by=title">Title</a> |
+        <a href="?sort_by=avg_rating">Average Rating</a>
+    </p>
     <!-- All Books Section -->
     <section class="all-books my-5">
         <div class="container">

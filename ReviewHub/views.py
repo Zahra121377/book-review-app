@@ -45,8 +45,21 @@ class BookListView(ListView):
     model = Book
     context_object_name = "books"
 
+    def get_queryset(self):
+        queryset = Book.objects.all()
+        genre = self.request.GET.get("genre")
+        if genre:
+            queryset = queryset.filter(genre=genre)
+
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by == "title":
+            queryset = queryset.order_by("title")
+        elif sort_by == "average_rating":
+            queryset = queryset.order_by("-average_rating")
+
+        return queryset
+
 
 class BookDetailView(DetailView):
     model = Book
-    # template_name = 'book_detail.html'
     context_object_name = "book"
