@@ -21,22 +21,6 @@ from ReviewHub.models import Book
 def index(request):
     return render(request, "ReviewHub/index.html")
 
-
-# def add_review(request, book_id):
-#     book = Book.objects.get(pk=book_id)
-#     if request.method == "POST":
-#         form = ReviewForm(request.POST)
-#         if form.is_valid():
-#             review = form.save(commit=False)
-#             review.book = book
-#             review.save()
-#             return redirect("book_detail", book_id=book.id)
-#     else:
-#         form = ReviewForm()
-
-#     return render(request, "ReviewHub/add_review.html", {"form": form})
-
-
 class CreateReviewView(FormView):
     template_name = "ReviewHub/add_review.html"
     form_class = ReviewForm
@@ -45,7 +29,6 @@ class CreateReviewView(FormView):
         book = get_object_or_404(Book, id=self.kwargs["book_id"])
         review = form.save(commit=False)
         review.book = book
-        review.user = self.request.user
         review.save()
         return redirect(
             "book_list"
