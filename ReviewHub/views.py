@@ -1,5 +1,5 @@
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import ListView
 
 from ReviewHub.forms import ReviewForm
@@ -19,10 +19,19 @@ def index(request):
     return render(request, "ReviewHub/index.html")
 
 
-def add_review_view(request):
-    context = {}
-    context["form"] = ReviewForm()
-    return render(request, "ReviewHub/add_review.html", context)
+def add_review(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.book = book
+            review.save()
+            return redirect("book_detail", book_id=book_id)
+    else:
+        form = ReviewForm()
+
+    return render(request, "ReviewHub/add_review.html", {"form": form})
 
 
 class BookListView(ListView):

@@ -19,14 +19,14 @@ class ReviewForm(forms.ModelForm):
         label="Rating",
         widget=forms.RadioSelect,
     )
-    name = forms.CharField(
+    user = forms.CharField(
         required=False,
-        label="User Name",
+        label="User",
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Enter recipe name"}
+            attrs={"class": "form-control", "placeholder": "Enter your name"}
         ),
     )
 
     class Meta:
         model = Review
-        fields = ["context", "rating", "name"]
+        fields = ["context", "rating", "user"]

@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Avg
+from django.utils import timezone
 
 
 class Book(models.Model):
@@ -44,7 +45,8 @@ class Review(models.Model):
     rating = models.CharField(max_length=1, choices=STARS)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.CharField(max_length=20, default="Anonymous")
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(default=timezone.now)
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.book.update_average_rating()
