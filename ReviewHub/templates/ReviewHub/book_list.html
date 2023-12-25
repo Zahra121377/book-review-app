@@ -1,9 +1,9 @@
 {% extends "ReviewHub/base.html" %}
 {% load static %}
 {% block content %}
-    <form class="form-inline mb-3" method="get" action="{% url 'book_list' %}" style="margin-bottom: 20px;">
-        <div class="form-group mr-2">
-            <label for="genre" class="mr-2">Filter by Genre:</label>
+    <form class="book-form" method="get" action="{% url 'book_list' %}">
+        <div class="form-group">
+            <label for="genre" class="label">Filter by Genre:</label>
             <select class="form-control" name="genre" id="genre">
                 <option value="">All Genres</option>
                 <option value="Fiction">Fiction</option>
@@ -18,10 +18,8 @@
                 <option value="Humor">Humor</option>
             </select>
         </div>
-        <br>
-        <button type="submit" class="btn btn-primary" >Filter</button>
+        <button type="submit" class="btn btn-primary">Filter</button>
     </form>
-
     <div class="card text-muted .bg-warning mb-3 d-inline-block">
         <div class="card-body">
             <p class="card-text">
@@ -31,11 +29,9 @@
             </p>
         </div>
     </div>
-
     <!-- All Books Section -->
     <section class="all-books my-5">
         <div class="container">
-            <h2 class="text-center mb-4">All Books</h2>
             <div class="row">
                 {% for book in books %}
                     <div class="col-md-3 col-sm-6 mb-4">
