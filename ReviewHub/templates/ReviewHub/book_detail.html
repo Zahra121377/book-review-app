@@ -1,26 +1,44 @@
 {% extends "ReviewHub/base.html" %}
 {% load static %}
+
 {% block content %}
-    <div class="container">
-        <h2>{{ book.title }}</h2>
-        <p>Author: {{ book.author }}</p>
-        <p>Genre: {{ book.genre }}</p>
-        <p>Publication Year: {{ book.pub_year }}</p>
-        <p>About: {{ book.about }}</p>
-        <p>Average Rating: {{ book.avg_rating }}</p>
-        <h3>Reviews</h3>
-        {% if book.review_set.all %}
-            <ul>
-                {% for review in book.review_set.all %}
-                    <li>
-                        <strong>{{ review.user }}</strong> rated it {{ review.rating }} stars.
-                        <br>
-                        {{ review.context }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No reviews yet. Be the first to review!</p>
-        {% endif %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ book.title }}</h2>
+                <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
+                <p class="card-text"><strong>Publication Year:</strong> {{ book.pub_year }}</p>
+                <p class="card-text"><strong>About:</strong> {{ book.about }}</p>
+                <p class="card-text"><strong>Average Rating:</strong> {{ book.avg_rating }}</p>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3 class="card-title">Reviews</h3>
+                {% if book.review_set.all %}
+                    <ul class="list-group">
+                        {% for review in book.review_set.all %}
+                            <li class="list-group-item">
+                                <strong>{{ review.user}}</strong> rated it {{ review.rating }} stars.
+                                <br>
+                                <p class="review-context">{{ review.context }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="card-text">No reviews yet. Be the first to review!</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
-{% endblock content %}
+    <style>
+        /* Add this style block to your CSS or within the <head> of your HTML */
+        .review-context {
+            background-color: #f1e7e8; /* You can change this color to your preference */
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+{% endblock %}
